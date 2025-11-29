@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stack de Herramientas</title>
+
+<style>
+    :root {
+        --bg: #fafafa;
+        --text: #222;
+        --card-bg: #fff;
+        --card-border: #e8e8e8;
+        --button-bg: #222;
+        --button-text: #fff;
+    }
+
+    /* 🌙 MODO OSCURO */
+    [data-theme="dark"] {
+        --bg: #121212;
+        --text: #eaeaea;
+        --card-bg: #1d1d1d;
+        --card-border: #333;
+        --button-bg: #eaeaea;
+        --button-text: #000;
+    }
+
+    body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        transition: background .2s, color .2s;
+    }
+
+    header {
+        padding: 20px;
+        text-align: center;
+        background: var(--card-bg);
+        border-bottom: 1px solid var(--card-border);
+        transition: .2s;
+    }
+
+    h1 { margin: 0; font-size: 1.8rem; }
+
+    /* 🔘 Selector de Tema */
+    .theme-selector {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    .theme-selector select {
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid var(--card-border);
+        background: var(--card-bg);
+        color: var(--text);
+    }
+
+    /* 🧱 Contenedor */
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .tool {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        transition: box-shadow .2s, background .2s, border .2s;
+    }
+
+    .tool:hover {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .tool img {
+        width: 90px;
+        height: 90px;
+        border-radius: 10px;
+        object-fit: cover;
+        background: #ccc;
+    }
+
+    .info h2 { margin: 0; font-size: 1.2rem; }
+    .info p { margin: 5px 0 10px 0; opacity: .8; }
+    .info a {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 6px;
+        background: var(--button-bg);
+        color: var(--button-text);
+        text-decoration: none;
+        font-size: .9rem;
+    }
+
+    @media (max-width: 600px) {
+        .tool { flex-direction: column; text-align: center; }
+        .tool img { width: 100%; height: 150px; }
+    }
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>Stack de Herramientas</h1>
+    <p>Colección minimalista de sitios web útiles</p>
+
+    <!-- SELECTOR DE TEMA -->
+    <div class="theme-selector">
+        <select id="themeSelect">
+            <option value="system">Tema del sistema</option>
+            <option value="light">Modo claro</option>
+            <option value="dark">Modo oscuro</option>
+        </select>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- 🧰 TARJETAS DE HERRAMIENTAS -->
+    <div class="tool">
+        <img src="https://via.placeholder.com/150" alt="">
+        <div class="info">
+            <h2>TinyWow</h2>
+            <p>Herramientas gratis para PDF, imágenes, videos y archivos.</p>
+            <a href="https://tinywow.com" target="_blank">Visitar</a>
+        </div>
+    </div>
+
+    <div class="tool">
+        <img src="https://via.placeholder.com/150" alt="">
+        <div class="info">
+            <h2>10015.io</h2>
+            <p>Más de 100 herramientas para diseño, texto, código y multimedia.</p>
+            <a href="https://10015.io" target="_blank">Visitar</a>
+        </div>
+    </div>
+
+    <div class="tool">
+        <img src="https://via.placeholder.com/150" alt="">
+        <div class="info">
+            <h2>ILovePDF</h2>
+            <p>Convertir, unir, comprimir y editar archivos PDF.</p>
+            <a href="https://ilovepdf.com" target="_blank">Visitar</a>
+        </div>
+    </div>
+
+    <div class="tool">
+        <img src="https://via.placeholder.com/150" alt="">
+        <div class="info">
+            <h2>Remove.bg</h2>
+            <p>Elimina el fondo de imágenes en 1 clic.</p>
+            <a href="https://remove.bg" target="_blank">Visitar</a>
+        </div>
+    </div>
+
+    <div class="tool">
+        <img src="https://via.placeholder.com/150" alt="">
+        <div class="info">
+            <h2>Canva</h2>
+            <p>Editor de diseños fácil con plantillas profesionales.</p>
+            <a href="https://canva.com" target="_blank">Visitar</a>
+        </div>
+    </div>
+
+    <div class="tool">
+        <img src="https://via.placeholder.com/150" alt="">
+        <div class="info">
+            <h2>Photopea</h2>
+            <p>Editor de fotos similar a Photoshop, completamente online.</p>
+            <a href="https://photopea.com" target="_blank">Visitar</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const themeSelect = document.getElementById("themeSelect");
+
+    // Cargar tema guardado o sistema
+    const savedTheme = localStorage.getItem("theme") || "system";
+    themeSelect.value = savedTheme;
+
+    function applyTheme(theme) {
+        if (theme === "light") {
+            document.documentElement.setAttribute("data-theme", "light");
+        } else if (theme === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+            // Tema del sistema
+            const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            document.documentElement.setAttribute("data-theme", systemDark ? "dark" : "light");
+        }
+    }
+
+    applyTheme(savedTheme);
+
+    themeSelect.addEventListener("change", () => {
+        const selected = themeSelect.value;
+        localStorage.setItem("theme", selected);
+        applyTheme(selected);
+    });
+
+    // Cambia automáticamente si está en modo "system"
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        if (themeSelect.value === "system") applyTheme("system");
+    });
+</script>
+
+</body>
+</html>
+
